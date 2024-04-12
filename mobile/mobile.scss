@@ -19,6 +19,12 @@ body {
   overflow: hidden;
 }
 
+.admin-user {
+    .last-ip, .registration-ip {
+        display: none;
+    }
+}
+
 .d-header {
   .contents {
     margin: 2px 0;
