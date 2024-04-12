@@ -19,6 +19,12 @@ img.avatar {
   font-weight: normal;
 }
 
+.admin-user {
+    .last-ip, .registration-ip {
+        display: none;
+    }
+}
+
 .d-header {
   height: 70px;
   background: rgba(var(--gf-header-bg-rgb), 0.92);
