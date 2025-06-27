@@ -1,11 +1,12 @@
-// Big thanks to jsthon for the initial work on this https://meta.discourse.org/u/jsthon/
+@use "sass:color";
 
+// Big thanks to jsthon for the initial work on this https://meta.discourse.org/u/jsthon/
 :root {
   --d-hover: var(--tertiary-low);
 }
 
 @mixin box-shadow($value: 8px) {
-  box-shadow: 0 1px $value rgba(black, 0.18);
+  box-shadow: 0 1px $value rgb(black, 0.18);
 }
 
 .background-container {
@@ -14,11 +15,11 @@
   left: 0;
   height: 100vh;
   width: 100vw;
-  z-index: -1;
   background-color: var(
     --gf-primary-very-low-or-primary-low,
     $primary-very-low
   );
+
   @if $no-background-image == "false" {
     @if $background-image != "default" {
       // Thanks @tmoko!
@@ -28,6 +29,7 @@
       // ♡ https://www.toptal.com/designers/subtlepatterns/japanese-sayagata/
       background-image: url($default-background);
     }
+
     @if $tile-background == "true" {
       background-size: auto;
     } @else {
@@ -36,6 +38,13 @@
       background-position: center center;
     }
   }
+}
+
+#main {
+  // need to show this above the background container
+  // can't use z-index: -1 because of a bug with pinch zoom
+  // in Safari iOS
+  z-index: 1;
 }
 
 .topic-list-body {
@@ -50,12 +59,15 @@
   width: 100%;
   max-width: 980px;
   padding: 3em 3em 5%;
+
   .archetype-regular & {
     min-height: 500px;
   }
-  @media screen and (max-width: 775px) {
+
+  @media screen and (width <= 775px) {
     padding: 1.5em;
   }
+
   @include box-shadow;
 }
 
@@ -68,21 +80,24 @@ pre {
   width: 100%;
 }
 
-.btn:not(.btn-flat):not(.btn-social):not(.btn-transparent),
+.btn:not(.btn-flat, .btn-social, .btn-transparent),
 .select-kit.dropdown-select-box .dropdown-select-box-header {
   border: 1px solid var(--gf-primary-low-or-low-mid, $primary-low);
   color: var(--primary-high, $primary-high);
   background: transparent;
   border-radius: 4px;
+
   .d-icon {
-    color: currentColor;
+    color: currentcolor;
   }
+
   .discourse-no-touch & {
     &:hover {
       background: var(--tertiary-low);
       color: var(--tertiary);
+
       .d-icon {
-        color: currentColor;
+        color: currentcolor;
       }
     }
   }
@@ -92,11 +107,12 @@ pre {
   border-color: transparent;
 }
 
-.btn.btn-danger:not(.btn-flat) {
+.btn.btn-danger:not(.btn-flat, .btn-transparent) {
   background: var(--danger);
   color: var(--secondary);
+
   &:hover {
-    background: darken($danger, 10%);
+    background: color.adjust($danger, $lightness: -10%);
     color: var(--secondary);
   }
 }
@@ -109,16 +125,20 @@ pre {
 
 #reply-control {
   border-radius: 10px 10px 0 0;
+
   .select-kit.dropdown-select-box .dropdown-select-box-header {
     color: var(--primary-medium);
+
     &:hover {
       background: var(--tertiary-low);
     }
   }
+
   .d-editor-button-bar {
     .select-kit.dropdown-select-box .dropdown-select-box-header {
       border: none;
     }
+
     button {
       color: var(--primary-medium);
       border: none;
@@ -129,7 +149,8 @@ pre {
 .open .grippie {
   border-radius: 10px 10px 0 0;
   opacity: 0.4;
-  &:before {
+
+  &::before {
     border-color: var(--gf-primary-low-or-low-mid, $primary-low);
   }
 }
@@ -137,11 +158,14 @@ pre {
 .d-editor-button-bar .btn {
   border: none;
   color: var(--tertiary);
+
   .d-icon {
     color: var(--tertiary);
   }
+
   &:hover {
     background: var(--tertiary-low);
+
     .d-icon {
       color: var(--tertiary);
     }
@@ -150,13 +174,16 @@ pre {
 
 header.d-header {
   @include box-shadow;
+
   .contents {
     display: flex;
     align-items: center;
   }
+
   .panel {
     margin-left: auto;
     order: 5;
+
     .rtl & {
       margin-left: 0;
     }
@@ -165,6 +192,7 @@ header.d-header {
 
 .d-header-icons .icon:hover {
   background: var(--tertiary-low);
+
   .d-icon {
     color: var(--tertiary);
   }
@@ -172,6 +200,7 @@ header.d-header {
 
 .badge-wrapper.box {
   padding: 2px 6px 2px 5px;
+
   span {
     border-radius: 4px;
   }
@@ -182,10 +211,10 @@ header.d-header {
 }
 
 // Main category nav
-
 .list-controls .combo-box .combo-box-header {
   background: transparent;
-  @media screen and (min-width: 775px) {
+
+  @media screen and (width >= 775px) {
     font-size: 1.1487em;
   }
   border-color: transparent;
@@ -221,7 +250,6 @@ header.d-header {
 }
 
 // Horizontal topic timeline
-
 #topic-progress-wrapper {
   right: 10vw !important;
 }
@@ -233,9 +261,12 @@ header.d-header {
 
 #bulk-select {
   background: transparent;
+
   button {
     background: var(--secondary);
+
     @include box-shadow(2px);
+
     &:hover {
       background: var(--tertiary-low);
     }
@@ -243,7 +274,6 @@ header.d-header {
 }
 
 // User pages
-
 .user-preferences .bio-composer .d-editor-preview,
 .group-form-bio .d-editor-preview,
 .edit-category-tab-topic-template .d-editor-preview {
@@ -269,29 +299,34 @@ header.d-header {
   .staff-counters {
     background: var(--tertiary-low);
     color: var(--tertiary);
+
     a {
       color: var(--tertiary);
     }
+
     span {
       color: var(--secondary);
     }
   }
+
   .helpful-flags {
     background-color: #2ecc40;
   }
+
   .flagged-posts {
     background-color: #f012be;
   }
+
   .deleted-posts {
     background-color: #ff851b;
   }
+
   .warnings-received {
     background-color: #ff4136;
   }
 }
 
 // admin
-
 .post-admin-menu {
   .popup-menu-button {
     border: none;
@@ -300,22 +335,26 @@ header.d-header {
 
 .admin-controls {
   background: var(--tertiary-low);
+
   .controls {
     background: var(--tertiary-low);
   }
+
   nav {
     background: var(--tertiary-low);
-    &:before {
+
+    &::before {
       background: linear-gradient(
         to right,
         var(--tertiary-low) 0%,
-        rgba(234, 236, 238, 0) 100%
+        rgb(234, 236, 238, 0) 100%
       );
     }
-    &:after {
+
+    &::after {
       background: linear-gradient(
         to right,
-        rgba(234, 236, 238, 0) 0%,
+        rgb(234, 236, 238, 0) 0%,
         var(--tertiary-low) 100%
       );
     }
@@ -328,6 +367,7 @@ header.d-header {
 
 .nav-stacked {
   background: var(--tertiary-low);
+
   li {
     border-color: var(--tertiary-medium);
   }
@@ -357,7 +397,6 @@ span.user-title {
 }
 
 // Select kit
-
 .select-kit.dropdown-select-box .dropdown-select-box-header {
   &:hover {
     .d-icon {
@@ -382,16 +421,16 @@ span.user-title {
   color: var(--primary);
 }
 
-@media screen and (max-width: 790px) {
+@media screen and (width <= 790px) {
   .topic-area > .loading-container {
     max-width: calc(100vw - 50px);
   }
 }
 
 // new user menu
-
 .user-menu.revamped .menu-tabs-container {
   border: none;
+
   button {
     margin: 0 0.5em 0.5em 0;
   }
@@ -408,7 +447,6 @@ noscript > #main-outlet {
 }
 
 // chat
-
 .chat-composer__wrapper {
   background: transparent;
 }
@@ -426,5 +464,13 @@ body.has-full-page-chat {
 }
 
 .chat-channel {
-  height: calc(100vh - (var(--header-offset) + 8em));
+  height: calc(100vh - (var(--header-offset) + 6.75em));
+}
+
+.powered-by-discourse {
+  margin-top: 1em;
+
+  @media screen and (width >= 1100px) {
+    margin-left: 4em;
+  }
 }

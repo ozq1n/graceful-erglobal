@@ -29,13 +29,16 @@ body {
   .contents {
     margin: 2px 0;
   }
+
   .login-button,
   .d-header button.sign-up-button {
     margin: 0 5px 0;
   }
+
   #site-logo {
     max-height: 25px;
   }
+
   .d-header-icons .d-icon {
     font-size: 1.5em;
   }
@@ -52,6 +55,7 @@ img.avatar {
 
 .image-upload-controls {
   padding: 10px;
+
   .btn.btn-danger.pad-left.no-text {
     margin-right: 8px;
   }
@@ -63,6 +67,7 @@ img.avatar {
 
 .list-controls {
   margin: auto;
+
   .nav-pills > li {
     background: transparent;
     border: 1px solid var(--primary-low);
@@ -96,23 +101,29 @@ img.avatar {
     padding: 2px 6px;
     font-size: 1em;
   }
+
   a.badge.badge-notification.unread {
     display: none;
   }
+
   .num a.badge-posts {
     color: var(--primary-low-mid);
     font-weight: normal;
   }
+
   .right {
     margin-left: 40px;
   }
+
   th,
   td {
     padding: 20px 5px;
   }
+
   img.avatar {
     margin-top: 4px;
   }
+
   > tbody > tr:first-of-type {
     border-top: 3px solid transparent;
   }
@@ -121,9 +132,11 @@ img.avatar {
 .categories-list .category-list {
   margin-left: 2px;
 }
+
 .category-list-item {
   border-left: none;
   border-top: 2px solid;
+
   .category-name {
     font-weight: normal;
   }
@@ -141,6 +154,7 @@ img.avatar {
   .about.collapsed-info .details {
     background: var(--secondary);
   }
+
   .about .details {
     background-color: var(--secondary);
   }
@@ -159,6 +173,7 @@ img.avatar {
   margin-right: auto;
   display: flex;
   align-items: center;
+
   .d-icon {
     margin: 0 5px;
   }
@@ -173,6 +188,7 @@ img.avatar {
   background: transparent;
   border: 1px solid var(--primary-low);
   border-radius: 4px;
+
   .d-icon-caret-down,
   .d-icon-caret-up {
     margin-right: 10px !important;
@@ -197,13 +213,13 @@ div.cooked {
   img:not(.thumbnail) {
     max-width: 100%;
   }
+
   td img:not(.thumbnail) {
     max-width: unset; // max-width distorts table images
   }
 }
 
 // chat
-
 .has-full-page-chat {
   #main {
     padding: 0;
